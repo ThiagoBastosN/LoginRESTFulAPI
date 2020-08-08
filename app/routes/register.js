@@ -5,7 +5,8 @@ const router = express.Router();
 
 
 
-//Run register controller in the function.
+//Run register controller, which is a function used to register a user,
+//with all the logic on registerController file,  in the function.
 router.post('/', registerController.store);
 
 

@@ -17,5 +17,5 @@ let startDatabase = function()
 
 }
 
-//Exporting the initialization of database.
+//Exporting the initialization of database. (which is a function!)
 module.exports = startDatabase;

@@ -13,6 +13,8 @@ module.exports = {
         //Search if the username exists in the database.
         await usersModel.findOne({name: username}, (err, user) =>
         {
+            //Remember to make it a function outside the store function.
+            //(It was throwing a unhandled promise error)
             userExists = user;
         });
 
@@ -29,6 +31,10 @@ module.exports = {
         return res.json({message: `User ${username} with password ${password} created!`});
     }
 }
+
+
+
+
 
 //This is used to delete all documents inside a collection
 //in the database. (The empty object match all items of a collection).
