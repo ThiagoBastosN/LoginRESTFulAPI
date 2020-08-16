@@ -3,6 +3,9 @@ const http = require('http');
 const cors = require('cors');
 
 const registerRoute = require('./routes/register');
+const loginRoute = require('./routes/login');
+const mainRoute = require('./routes/main');
+
 const database = require('./database');
 
 startServer(database);
@@ -23,6 +26,8 @@ function startServer(databaseConfig = {})
     
     
     app.use('/register', registerRoute);
+    app.use('/login', loginRoute)
+    app.use('/main', mainRoute);
     
     
     
