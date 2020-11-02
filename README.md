@@ -26,7 +26,7 @@
 
 **Instalation**
 
-* `git clone myhttsplink`
+* `git clone https://github.com/ThiagoBastosN/LoginRESTFulAPI.git`
 * `cd login-api-with-jwt`
 * `npm install`
 * Inside .env, change DATABASE_URI to your cluster URI
