@@ -1,8 +1,8 @@
-let startDatabase = function()
+const mongoose = require('mongoose');
+
+const startDatabase = function()
 {
-    const mongoose = require('mongoose');
-    
-    mongoose.connect('mongodb+srv://cleber:mesadesktop1@cluster0-keiga.mongodb.net/test?retryWrites=true&w=majority',
+    mongoose.connect(process.env.DATABASE_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -12,9 +12,8 @@ let startDatabase = function()
     
     db.once('open', () =>
     {
-        console.log("CONNECTED TO THE DATABASE BRO");
+        console.log("Successfully connected to the database.");
     });
-
 }
 
 //Exporting the initialization of database. (which is a function!)

@@ -6,35 +6,30 @@ module.exports = {
     async login(req, res, next)
     {
         const { username, password } = req.body;
-
-        //It is way better to just store the result of "findOne" in a variable, and
-        //then acess it's parameters.
-        const user = await usersModel.findOne({name: username})
-        
-        if(!user)
-        {
-            console.log('ue mano bugo');
-            return res.status(400).send({ error: 'User does not exist' });
-        }
-        const encryptedPassword = user.password;
-
         try
         {
+            //It is way better to just store the result of "findOne" in a variable, and
+            //then acess it's parameters.
+            const user = await usersModel.findOne({name: username})
+            
+            if(!user) return res.status(400).send({ error: 'User does not exist' });
+            //The password from the DB.
+            const encryptedPassword = user.password;
+
+            //Compare DB password with request password.
             if(!await bcrypt.compare(password, encryptedPassword))
             {
-                console.log('lsenha errada irmao');
                 return res.send({ ok: false });
             }
-
             //Token is created based on the user ID.
-            const token = jwt.sign({id: user.id}, 'crebe', {
+            const token = jwt.sign({id: user.id}, 'secretKey', {
                 expiresIn: 86400,
             });
 
             return res.send({user, token});
         }catch
         {
-            return res.status(500).send('Cu');
+            return res.status(500).send('Could not create token');
         }
     }
 }

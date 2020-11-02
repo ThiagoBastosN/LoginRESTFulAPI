@@ -9,6 +9,7 @@ const usersSchema = new Schema({
     timestamps: true,
 });
 
+//Before saving into the database hash the password.
 usersSchema.pre('save', async function(next)
 {
     const hash = await bcrypt.hash(this.password, 10);
@@ -17,4 +18,4 @@ usersSchema.pre('save', async function(next)
     next();
 });
 
-module.exports = model('User', usersSchema); //This compiles our schema into an actual model
+module.exports = model('User', usersSchema);

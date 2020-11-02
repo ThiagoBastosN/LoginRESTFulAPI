@@ -6,7 +6,7 @@ const authMiddleware = require('../middlewares/auth');
 
 router.get('/', authMiddleware, (req, res) =>
 {
-    res.send({ ok: true, id: req.userId });
+    res.send({ ok: "Retrieve data since it's been authenticated", id: req.userId });
 });
 
 

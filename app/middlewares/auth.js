@@ -1,12 +1,11 @@
-const { schema } = require("../models/users");
-
 const jwt = require('jsonwebtoken');
 
 module.exports = function authenticateToken(req, res, next)
 {
+    //Store authorization header.
     const authHeader = req.headers.authorization;
 
-    if(!authHeader) return res.status(401).send({ error: 'No authorization header' })
+    if(!authHeader) return res.status(401).send({ error: 'No authorization header provided' })
 
     const splittedHeader = authHeader.split(' ');
 
@@ -16,11 +15,10 @@ module.exports = function authenticateToken(req, res, next)
 
     if(!/^Bearer$/i.test(scheme)) return res.status(401).send({ error: 'Wrong scheme' });
 
-    jwt.verify(token, 'crebe', (err, decoded) =>
+    jwt.verify(token, 'secretKey', (err, decoded) =>
     {
         if(err) return res.status(401).send({ error: 'Wrong token' });
 
-        console.log("Oia o decodificado" + decoded);
         req.userId = decoded.id;
         return next();
     });
