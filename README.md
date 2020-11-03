@@ -43,7 +43,7 @@ At http://localhost:3000/ you'll have some route options.
 * http://localhost:3000
   * /retrieveDb
   * /main
-    * Requires authentication header and a toke that comes in /login response, the format must be **Bearer yourtoken**
+    * Requires authentication header and a token that comes in /login response, the format must be **Bearer yourtoken**
 
 **Notice that /main route requires authentication.**
 
